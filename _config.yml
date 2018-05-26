@@ -2,14 +2,14 @@ title:             Gabriel's Blog
 email:             gabrielwfeng@gmail.com
 description:
 author:            Gabriel Feng
-baseurl:           "gabrielwf.me"
-url:               "gabrielwf.me"
+baseurl:           "/"
+url:               "/"
 
 # Social Profiles
 twitter_username:  gabriel_feng
 github_username:   gabrielvon
-linkedin_username:   gabriel feng
 instagram_username:   gabrielfeng
+linkedin_username:   gabrielfeng
 # facebook_username: StartBootstrap
 
 # Build settings
