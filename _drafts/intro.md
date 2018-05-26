@@ -1,4 +1,4 @@
-# 2018-05-26
+# intro
 
 ---
 layout: post
