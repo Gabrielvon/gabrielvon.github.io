@@ -5,6 +5,8 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "json", "2.1.0"
+# gem "jekyll-theme-clean-blog"
+# gem "jekyll-theme-awesome"
 # gem "minima"
 gem 'github-pages', group: :jekyll_plugins
 # gem "rails"
