@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
+gemspec
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+# gem "jekyll", "~> 3.6.0"
+gem "jekyll"
 
-gem "json", "2.1.0"
-# gem "jekyll-theme-clean-blog"
-# gem "jekyll-theme-awesome"
-# gem "minima"
-gem 'github-pages', group: :jekyll_plugins
-# gem "rails"
+group :jekyll_plugins do
+  # gem "jekyll-feed", "~> 0.6"
+  # gem "jekyll-paginate", "~> 1.1.0"
+  gem "jekyll-feed"
+  gem "jekyll-paginate"
+  # gem "github-pages"
+end
 
+require 'rbconfig'
+  if RbConfig::CONFIG['target_os'] =~ /darwin(1[0-3])/i
+    gem 'rb-fsevent', '<= 0.9.4'
+  end
