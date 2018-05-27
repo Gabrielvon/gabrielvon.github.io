@@ -1,9 +1,10 @@
 title:             Gabriel's Blog
 email:             gabrielwfeng@gmail.com
 description:
-author:            Gabriel Feng
+author:            Gabriel
 baseurl:           "/"
-url:               "/"
+url:               "https://gabrielwf.me"
+enforce_ssl:        gabrielwf.me
 
 # Social Profiles
 twitter_username:  gabriel_feng
