@@ -22,3 +22,7 @@ paginate_path:     "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
+
+# Google Analytics
+ga_track_id: 'UA-74828864-4'            # Format: UA-xxxxxx-xx
+ga_domain: gabrielwf.me
