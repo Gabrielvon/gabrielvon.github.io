@@ -4,7 +4,7 @@ description:
 author:            Gabriel
 baseurl:           "/"
 url:               "https://gabrielwf.me"
-enforce_ssl:        gabrielwf.me
+enforce_ssl:        "gabrielwf.me"
 
 # Social Profiles
 twitter_username:  gabriel_feng
