@@ -43,15 +43,17 @@ background: ''
 
 <br>
 <h4> 最大最小值标准化（MinMaxScale）</h4>
-如果需要记录原始数据标准化后的基本统计值，那么我们还需要对应的记录这些当前状态的最小值和最大值，进而得到全局最新的最大值和最小值。
+<body>如果需要记录原始数据标准化后的基本统计值，那么我们还需要对应的记录这些当前状态的最小值和最大值，进而得到全局最新的最大值和最小值。</body>
 
 |Symbol|当前状态|全局最新
 |---|---|---|
 |最小值|$mn(x_b) = min(x_b)$|$mn(x_t) = min(mn_b)$|
 |最大值|$mx(x_b) = max(x_b)$|$mx(x_t) = max(mx_b)$|
- $ sumsq(z_t) = \frac{sumsq(x_b) - 2*min(x_t) + cnt(x_b)*mn(x_t)^2 }{(mx(x_t)-mn(x_t))^2}$
 
+<br>
+$sumsq(z_t) = \frac{sumsq(x_b) - 2*min(x_t) + cnt(x_b)*mn(x_t)^2 }{(mx(x_t)-mn(x_t))^2}$
 $sum(z_t) = \frac{sum(x_b) - cnt(x_t)*mn(x_t)}{mx(x_t)-mn(x_t)}$
+
 
 <br>
 <h4> Z-score </h4>
