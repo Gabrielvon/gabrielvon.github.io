@@ -9,7 +9,7 @@ enforce_ssl:        "gabrielwf.me"
 # Social Profiles
 twitter_username:  gabriel_feng
 github_username:   gabrielvon
-instagram_username:   gabrielfeng
+# instagram_username:   gabrielfeng
 linkedin_username:   gabrielfeng
 # facebook_username: StartBootstrap
 
@@ -17,12 +17,15 @@ linkedin_username:   gabrielfeng
 markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
+  # input: markdown
 
 paginate:          5
 paginate_path:     "/posts/page:num/"
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  # - Mathjax
+
 
 # Google Analytics
 ga_track_id: 'UA-74828864-4'            # Format: UA-xxxxxx-xx
