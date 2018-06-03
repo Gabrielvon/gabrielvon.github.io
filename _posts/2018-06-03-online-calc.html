@@ -27,7 +27,7 @@ mathjax: true
 <p>
     <body>
         假设我们有1000个样本，记为$X$, 这1000个样本不是一次给出，而是每次更新10个样本,我们每个状态也只知道这10个的信息，过去的信息已经丢失。
-        我们把每次更新为描述为，第b组样本里，共有m个样本，需要可以每次记录以下值。 
+        我们把每次更新为描述为，第b组样本里，共有m个样本，需要可以每次记录以下值。
     <br>
     <table border="1" align="center">
         <tr>
@@ -43,21 +43,21 @@ mathjax: true
         <tr>
             <td>总和</td>
             <td>$sum(x_b) = \sum_{j=b-m}^{b}{x_j}$</td>
-            <td>$sum(x_t) = \sum_{i=1}^{b}{sum(x_b)}$</td>    
+            <td>$sum(x_t) = \sum_{i=1}^{b}{sum(x_b)}$</td>
         </tr>
         <tr>
             <td>样本个数</td>
             <td>$cnt(x_b) = count(x_b)$</td>
             <td>$cnt(x_t) = \sum_{i=1}^{b}cnt(x_b)$</td>
         </tr>
-    </table>       
+    </table>
     <br>
     那么很简单的我们就能通过总和以及总个数，计算当下实时的平均值和标准差了。
     <br><br>
     $ \bar{X_t} = \frac{sum(x_t)}{cnt(x_t)} $
     <br><br>
-    $ \sigma_t^2 = \frac{sumsq(x_t)}{cnt(x_t)} - (\frac{sum(x_t)}{cnt(x_t)})^2$      
-    </body>      
+    $ \sigma_t^2 = \frac{sumsq(x_t)}{cnt(x_t)} - (\frac{sum(x_t)}{cnt(x_t)})^2$
+    </body>
 </p>
 
 
@@ -81,9 +81,9 @@ mathjax: true
             <tr>
                 <td>最大值</td>
                 <td>$mx(x_b) = max(x_b)$</td>
-                <td>$mx(x_t) = max(mx_b)$</td>    
+                <td>$mx(x_t) = max(mx_b)$</td>
             </tr>
-        </table>               
+        </table>
     <br><br>
     $sumsq(z_t) = \frac{sumsq(x_b) - 2*min(x_t) + cnt(x_b)*mn(x_t)^2 }{(mx(x_t)-mn(x_t))^2}$
     <br><br>
@@ -93,22 +93,81 @@ mathjax: true
 
 <br><br>
 <p>
-    <h4> Z-score </h4>    
+    <h4> Z-score </h4>
     <body>
         如果需要记录MinMaxScale标准化后的原始数据的基本统计值，那么我们还需要对应的记录计算并记录当前状态下最新的平均值和标准差。
         <br>
         $sumsq(z_t) = \frac{sumsq(x_b) - 2*sum(x_b)*\bar{X_t} + cnt(x_b) * \bar{X_t}^2}{\sigma^2}$
         <br><br>
-        $sum(z_t) = \frac{sum(x_b) - cnt(x_b) * \bar{X_t}}{\sigma}$        
-    <br>    
+        $sum(z_t) = \frac{sum(x_b) - cnt(x_b) * \bar{X_t}}{\sigma}$
+    <br>
     </body>
-</p> 
+</p>
 
 <br><br>
 <h4>Python实现</h4>
 <p>
-    同学们可以来我<a href="https://github.com/Gabrielvon/QuantWork/blob/master/dynamic_computing.py">Github</a>参考下。（弄了半天，不知道怎样把Python代码内嵌到网页里面。）
+    同学们可以来我<a href="https://github.com/Gabrielvon/QuantWork/blob/master/dynamic_computing.py">Github</a>参考下。
 </p>
+<h4 id="python">Python实现<a class="headerlink" href="#python" title="Permanent link"></a></h4>
+<div class="codehilite">
+    <pre>
+        <span class="k">def</span> <span class="nf">update_std</span><span class="p">(</span><span class="n">sumsq_x</span><span class="p">,</span> <span class="n">sum_x</span><span class="p">,</span> <span class="n">cnt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;online update standard deviation</span>
+
+        <span class="sd">    Args:</span>
+        <span class="sd">        sumsq_x (float): cummulative sum squre of x</span>
+        <span class="sd">        sum_x (float): cummulative sum of x</span>
+        <span class="sd">        cnt (float): cummulativef number of x, i.e. count</span>
+
+        <span class="sd">    Returns:</span>
+        <span class="sd">        float: global standard deviation</span>
+        <span class="sd">    &quot;&quot;&quot;</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="p">(</span><span class="n">sumsq_x</span> <span class="o">-</span> <span class="n">sum_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">cnt</span><span class="p">)</span> <span class="o">/</span> <span class="n">cnt</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">update_maxminscale</span><span class="p">(</span><span class="n">stats_on_target</span><span class="p">,</span> <span class="n">lastest_minmax</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">    online maxminscale normalization</span>
+
+        <span class="sd">    Args:</span>
+        <span class="sd">        stats_on_target (TYPE): recorded stats in the past which is going to be updated. i.e. [sum of square, sum, count] of last</span>
+        <span class="sd">        lastest_minmax (TYPE): current status i.e. current [min, max]</span>
+
+        <span class="sd">    Returns:</span>
+        <span class="sd">        tuple: sumsq, sum and count</span>
+        <span class="sd">    &quot;&quot;&quot;</span>
+            <span class="n">target_xss</span><span class="p">,</span> <span class="n">target_xs</span><span class="p">,</span> <span class="n">target_xct</span> <span class="o">=</span> <span class="n">stats_on_target</span>
+            <span class="n">xmn</span><span class="p">,</span> <span class="n">xmx</span> <span class="o">=</span> <span class="n">lastest_minmax</span>
+
+            <span class="n">zss</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_xss</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xmn</span> <span class="o">*</span> <span class="n">target_xs</span> <span class="o">+</span> <span class="n">target_xct</span> <span class="o">*</span> <span class="n">xmn</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">xmx</span> <span class="o">-</span> <span class="n">xmn</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">zs</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_xs</span> <span class="o">-</span> <span class="n">target_xct</span> <span class="o">*</span> <span class="n">xmn</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">xmx</span> <span class="o">-</span> <span class="n">xmn</span><span class="p">)</span>
+            <span class="n">zct</span> <span class="o">=</span> <span class="n">target_xct</span>
+
+            <span class="k">return</span> <span class="n">zss</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="n">zct</span>
+
+
+        <span class="k">def</span> <span class="nf">update_zscore</span><span class="p">(</span><span class="n">stats_on_target</span><span class="p">,</span> <span class="n">lastest_mustd</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;online zscore computation</span>
+
+        <span class="sd">    Args:</span>
+        <span class="sd">        stats_on_target (TYPE): recorded stats in the past which is going to be updated. i.e. [sum of square, sum, count] of last</span>
+        <span class="sd">        lastest_mustd (TYPE): current status i.e. current [mean, std]</span>
+
+        <span class="sd">    Returns:</span>
+        <span class="sd">        tuple: sumsq, sum and count</span>
+        <span class="sd">    &quot;&quot;&quot;</span>
+            <span class="n">target_xss</span><span class="p">,</span> <span class="n">target_xs</span><span class="p">,</span> <span class="n">target_xct</span> <span class="o">=</span> <span class="n">stats_on_target</span>
+            <span class="n">xmu</span><span class="p">,</span> <span class="n">xstd</span> <span class="o">=</span> <span class="n">lastest_mustd</span>
+
+            <span class="n">zss</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_xss</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">target_xs</span> <span class="o">*</span> <span class="n">xmu</span> <span class="o">+</span> <span class="n">target_xct</span> <span class="o">*</span> <span class="n">xmu</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">xstd</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">zs</span> <span class="o">=</span> <span class="p">(</span><span class="n">target_xs</span> <span class="o">-</span> <span class="n">target_xct</span> <span class="o">*</span> <span class="n">xmu</span><span class="p">)</span> <span class="o">/</span> <span class="n">xstd</span>
+            <span class="n">zct</span> <span class="o">=</span> <span class="n">target_xct</span>
+
+            <span class="k">return</span> <span class="n">zss</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="n">zct</span>
+    </pre>
+</div>
+
 
 <br><br>
 <b>References:</b>
