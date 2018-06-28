@@ -1,6 +1,6 @@
-title:             Gabriel's Blog
+title:             Welcome
 email:             gabrielwfeng@gmail.com
-description:
+description:       Seriously Chatting for All.
 author:            Gabriel
 baseurl:           "/"
 url:               "https://gabrielwf.me"
@@ -30,3 +30,7 @@ plugins:
 # Google Analytics
 ga_track_id: 'UA-74828864-4'            # Format: UA-xxxxxx-xx
 ga_domain: gabrielwf.me
+
+
+# Others
+github: [metadata]
