@@ -1,150 +1,52 @@
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="keywords"  content="{{ site.keyword }}">
+    <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
 
-  <title>
-    {% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}
-    {% else %}{{ site.title | escape }}{% endif %}
-  </title>
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
 
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ site.baseurl }}/img/avatar-gabriel.png">
 
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ "/css/bootstrap.min.css" | prepend: site.baseurl }}">
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
 
-  <link rel="stylesheet" href="{{"/assets/vendor/font-awesome/css/font-awesome.min.css" | relative_url }}">
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl }}">
 
-  <link rel="stylesheet" href="{{"/assets/main.css" | relative_url }}">
-
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
-
-
-
-
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-  <meta name="keywords"  content="{{ site.keyword }}">
-  <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
-
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ site.baseurl }}/img/favicon.ico">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-
-  <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" href="{{"/assets/vendor/bootstrap/css/bootstrap.min.css" | relative_url }}">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ "/css/hux-blog.min.css" | prepend: site.baseurl }}">
-
-  <!-- Pygments Github CSS -->
-  <link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl }}">
-
-  <!-- Custom Fonts -->
-  <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- Hux change font-awesome CDN to qiniu -->
-  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-74828864-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-74828864-4');
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      extensions: ["tex2jax.js"],
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        processEscapes: true
-        },
-        "HTML-CSS": { fonts: ["TeX"] }
-      });
-  </script>
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
 
 
-  <style>/*github*/
-  .codehilite {background-color:#fff;color:#333333;}
-  .codehilite .hll {background-color:#ffffcc;}
-  .codehilite .c{color:#999988;font-style:italic}
-  .codehilite .err{color:#a61717;background-color:#e3d2d2}
-  .codehilite .k{font-weight:bold}
-  .codehilite .o{font-weight:bold}
-  .codehilite .cm{color:#999988;font-style:italic}
-  .codehilite .cp{color:#999999;font-weight:bold}
-  .codehilite .c1{color:#999988;font-style:italic}
-  .codehilite .cs{color:#999999;font-weight:bold;font-style:italic}
-  .codehilite .gd{color:#000000;background-color:#ffdddd}
-  .codehilite .ge{font-style:italic}
-  .codehilite .gr{color:#aa0000}
-  .codehilite .gh{color:#999999}
-  .codehilite .gi{color:#000000;background-color:#ddffdd}
-  .codehilite .go{color:#888888}
-  .codehilite .gp{color:#555555}
-  .codehilite .gs{font-weight:bold}
-  .codehilite .gu{color:#800080;font-weight:bold}
-  .codehilite .gt{color:#aa0000}
-  .codehilite .kc{font-weight:bold}
-  .codehilite .kd{font-weight:bold}
-  .codehilite .kn{font-weight:bold}
-  .codehilite .kp{font-weight:bold}
-  .codehilite .kr{font-weight:bold}
-  .codehilite .kt{color:#445588;font-weight:bold}
-  .codehilite .m{color:#009999}
-  .codehilite .s{color:#dd1144}
-  .codehilite .n{color:#333333}
-  .codehilite .na{color:teal}
-  .codehilite .nb{color:#0086b3}
-  .codehilite .nc{color:#445588;font-weight:bold}
-  .codehilite .no{color:teal}
-  .codehilite .ni{color:purple}
-  .codehilite .ne{color:#990000;font-weight:bold}
-  .codehilite .nf{color:#990000;font-weight:bold}
-  .codehilite .nn{color:#555555}
-  .codehilite .nt{color:navy}
-  .codehilite .nv{color:teal}
-  .codehilite .ow{font-weight:bold}
-  .codehilite .w{color:#bbbbbb}
-  .codehilite .mf{color:#009999}
-  .codehilite .mh{color:#009999}
-  .codehilite .mi{color:#009999}
-  .codehilite .mo{color:#009999}
-  .codehilite .sb{color:#dd1144}
-  .codehilite .sc{color:#dd1144}
-  .codehilite .sd{color:#dd1144}
-  .codehilite .s2{color:#dd1144}
-  .codehilite .se{color:#dd1144}
-  .codehilite .sh{color:#dd1144}
-  .codehilite .si{color:#dd1144}
-  .codehilite .sx{color:#dd1144}
-  .codehilite .sr{color:#009926}
-  .codehilite .s1{color:#dd1144}
-  .codehilite .ss{color:#990073}
-  .codehilite .bp{color:#999999}
-  .codehilite .vc{color:teal}
-  .codehilite .vg{color:teal}
-  .codehilite .vi{color:teal}
-  .codehilite .il{color:#009999}
-  .codehilite .gc{color:#999;background-color:#EAF2F5}
-  </style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-
-
-
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>

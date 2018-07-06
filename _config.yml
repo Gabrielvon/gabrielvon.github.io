@@ -1,36 +1,99 @@
-title:             Welcome
+# Site settings
+title: Gabriel's Blog
+SEOTitle: Gabriel's Blog
+header-img: img/home-bg.jpg
 email:             gabrielwfeng@gmail.com
-description:       Seriously Chatting for All.
-author:            Gabriel
-baseurl:           "/"
-url:               "https://gabrielwf.me"
-enforce_ssl:        "gabrielwf.me"
+description: "desc in config.ym"
+keyword: "keyword"
+url: "https://gabrielwf.me"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
-# Social Profiles
-twitter_username:  gabriel_feng
+
+
+# SNS settings
+RSS: false
+# weibo_username:     huxpro
+# zhihu_username:     huxpro
 github_username:   gabrielvon
-# instagram_username:   gabrielfeng
+twitter_username:  gabriel_feng
+# facebook_username:  huxpro
 linkedin_username:   gabrielfeng
-# facebook_username: StartBootstrap
+
+
 
 # Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+gems: [jekyll-paginate]
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
-  # input: markdown
 
-paginate:          5
-paginate_path:     "/posts/page:num/"
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  # - Mathjax
 
+
+# Disqus settings
+disqus_username: gabriel
+
+# Netease setttings
+netease_comment: false
+
+
+
+# Analytics settings
+# Baidu Analytics
+# ba_track_id: [your track id]
 
 # Google Analytics
 ga_track_id: 'UA-74828864-4'            # Format: UA-xxxxxx-xx
 ga_domain: gabrielwf.me
 
 
-# Others
-# github: [metadata]
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: ""
+sidebar-avatar: /img/avatar-gabriel.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: false                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Progressive Web Apps
+chrome-tab-theme-color: "#000000"
+service-worker: true
+
+
+
+# Friends
+friend: [
+    {
+    #     title: "Su",
+    #     href: "http://su.gallery/"
+    # },{
+        title: "Hana",
+        href: "hanaky.me"
+    }, {
+        title: "Hana",
+        href: "hanaky.me"
+    }
+]
