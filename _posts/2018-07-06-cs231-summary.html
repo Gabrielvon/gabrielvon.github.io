@@ -1,0 +1,194 @@
+---
+layout: post
+title:  "cs231n总结和量化脑洞"
+subtitle: "Computational Vision in Quant"
+date:   2018-07-06
+background: ''
+---
+
+
+<br><br><br>
+<h3>废话</h3>
+<hr>
+<p>
+    几年前还在念研究生的时候，有自学机器学习等工具，其中上了Andrew Ng的课，弄清楚了简单的原理，然后那个学期
+    的课余时间和朋友一起玩了一两个项目，边做边学，然后就基本没有怎么用过了，倒是有一直关注工业界的应用和发展。
+</p>
+<p>
+    最近因为项目需要，利用下班时间，花了两周，一口气把stanford的cs231n上完了。课程不难，我大概看懂了百分之
+    七八十。讲得通俗易懂，如果只是应用，不涉及深入研究，大概足够了。
+</p>
+<p>
+    大概说两个内容，一是非常粗糙的课程内容总结；二是这两周的相关思考对我在量化研究中带来的脑洞。
+</p>
+
+
+<br><br><br>
+<h3>课堂总结</h3>
+<hr>
+<p>
+    我看的是B站上
+    <a href="https://www.bilibili.com/video/av17204303">2017 Spring</a>
+    的版本，好像youtube也有，不想被字幕打扰的朋友可以去看一下。课程提及一下这些
+    点，记录下来方便自己去查找。以下列举的知识点涵盖了课程90%的内容。看完整个课程后，巩固了某些知识点的，
+    纠正了一些误解，开来了一些脑洞。
+</p>
+
+<br>
+<h5>基础知识</h5>
+<ul>
+    <li>计算机视觉发展历史与背景</li>
+    <li>Feed Forward and Back Propagation</li>
+    <li>Simple Cassification Using KNN，这个大概是为了后面说深度学习分类做铺垫</li>
+    <li>Loss Function and Optimizer
+        <ul>
+            <li>L1 norm, L2 norm, softmax, maxnorm, etc.</li>
+            <li>sgd, sgd+momentum, netrov, adagrad, rmsprop, adam</li>
+        </ul>
+    </li>
+    <li>Regularization</li>
+    <li>Neural Network，只是非常浅层</li>
+    <li>Activation Function and Batch Normalization
+        <ul>
+            <li>Sigmoid, Tanh, ReLU, Leaky ReLU, Maxout, ELU</li>
+            <li><a href="https://en.wikipedia.org/wiki/Activation_function">Wiki</a></li>
+        </ul>
+    </li>
+</ul>
+
+<br>
+<h5>Convolution Network (CNN)</h5>
+<ul>
+    <li>这个是本课程重点，讲得很详细</li>
+    <li><a href="http://scs.ryerson.ca/~aharley/vis/conv/">Convnet Visualization</a></li>
+</ul>
+
+<br>
+<h5>Python建模工具和流行的模型</h5>
+<ul>
+    <li>深度学习的工具介绍：caffe, torch, tensorflow</li>
+    <li>ImageNet比较历届胜出者的模型解释与对比: AlexNet, VGG, GoogLenet, ResNet</li>
+</ul>
+
+<br>
+<h5>进阶与其他</h5>
+<ul>
+    <li>Transfer Learning</li>
+    <li>Recurrent Neural Network (RNN) and Long Short Term Memory (LSTM)</li>
+    <li>语言模型</li>
+    <li>Image Segmentation/Location/Recognition</li>
+    <li>Visualizing Network for knowing what it is actually learning</li>
+    <li>
+        Fun Project:
+        <a href="http://www.datascienceassn.org/content/tensorflow-tutorial-deepdream-algorithm">Deep Dream</a>
+        and
+        <a href="https://github.com/jcjohnson/fast-neural-style">Style Transfer</a>
+    </li>
+    <li>Unspervised Neural Network: Pixel RNN CNN, Variance Encoder, Generative Adversarial Network</li>
+    <li>Reinforcement Learning Models: DQN, RAM</li>
+    <li>Guest Lectures: 结合硬件的简化和加速模型 by Song Han, 对抗样本和对抗训练 by Ian G
+    oodfellow</li>
+</ul>
+
+<h5>笔记</h5>
+<ul>
+    <li>
+        Transfer Learning并不能很有效地让模型像人一样从小样本习得技能。这个方法大概就是加入"不完全准确"的样本
+        进一步训练，让模型对类似的其他目标也有相当的准确率，或者使模型抗干扰能力增强。
+    </li>
+    <li>
+        RNN和LSTM是基于CNN的延伸，如果以block为单位去看待CNN，那么每个block的复杂化并控制输入输出，通过不同
+        的结构和循环使用某些元素，得到了RNN和LSTM。我们甚至可以再基于这个模型创造新的结构模型。
+    </li>
+    <li>
+        神经网络可视化那一节尝试让我们把这个"黑箱"打开，看看里面的结构。不过其实还是很难看得懂。毕竟低维生物很
+        难理解高维生物的世界
+    </li>
+    <li>
+        Deep Dream和Style Transfering很好玩，挺开脑洞的。在各领域下都可以考虑下如何挖掘特征，只是有个非常
+        致命的缺点，就是不可解释，同时也意味着不稳定。
+    </li>
+    <li>
+        在Reinforcement Learning之后就开始有点虚了，可能这个方向不是课程重点，大概就是提了下。如果需要使用，
+        我应该还会进一步找其他的资源学习。
+    </li>
+    <li>
+        Song的lecture提到的简化模型，挺有意思的。比如说可以通过对weights进行四舍五入或聚类等方法删除掉冗余
+        无用的weights，进而在保证一定准确率的前提下大大简化模型，提高效率。
+        Ian的对抗样本和对抗训练提到神经网络模型很容易被简单的样本欺骗，就如人在视觉上也很容易被某些图片欺骗。加
+        入对抗样本进行训练可以提高模型的反欺诈的能力，进而提高稳定性。这个领域仍然需要很多研究。
+    </li>
+</ul>
+
+
+<br><br><br>
+<h3>量化脑洞</h3>
+<hr>
+<p>
+    业内大概很多团队都有尝试使用神经网络(NN)，但是鲜有听闻有完全交由NN模型决定交易的产品推出。个人认为主要原因大
+    概有两点，一是金融市场中各种数据的性质和特征非常不一样，很难通过模型直接跑出有效的策略；二是即使有跑出不错的策略，
+    由于不可解释，基金经理无法有效控制，导致看着漂亮的收益曲线但不能实盘使用。在我上这门课的这两周，我也有一直在思
+    考可以怎么把神经网络应用到量化研究当中，可以简单聊一下。
+</p>
+
+<br>
+<h5>基本框架</h5>
+<p>
+    <ol>
+        <li><b>数据生成规则(Data Processing)</b>：有两种方式使用原始值；使用图像化值，比如把k线画出来。</li>
+        <li><b>设计网络结构(Network Archtecture Design)</b>：基于数据特征和先验知识，构建最合适的网络。</li>
+        <li><b>学习目标(Target)</b>：基于监督学习对收益率做分类或回归；基于无监督学习，进行因子挖掘。</li>
+    </ol>
+</p>
+<p>
+    基于我对神经网络的理解，我认为基础框架主要分为三大部分，分别为制定数据生成规则，设计网络结构，确定学习目标。通俗
+    点说，机器一开始自己是一片白纸，对世界的理解也是一片白纸，只要给他呈现这个世界，他就会基于他的天赋去学习对目标最
+    有利的观察世界的方式。你喂给他的数据，就是这个世界的呈现，所以数据输入可以是任何形态，只要这个规则是固定，也就是
+    说你对原始数据的处理，直到你训练模型之前。天赋是你给他设定的网络结构。目标是你对机器的最终期待。
+</p>
+
+<br>
+<h5>应用场景</h5>
+<p>
+    <ul>
+        <li>原始数据图像化
+            <ul>
+                <li>例子1：盘口 ==> 灰度图片</li>
+                <li>例子2：盘口 + 第三维特征 ==> 彩色图片</li>
+                <li>例子3：筹码分布 ==> 灰度图片</li>
+                <li>例子4：筹码分布 + 第三维特征 ==> 彩色图片</li>
+            </ul>
+        </li>
+        <li>原始数据：n*k 或 n*k*d
+            <ul>
+                <li>例子1：窗口期+各类因子或原始数据 ==> 灰度图片</li>
+                <li>例子2：窗口期+各类因子或原始数据+深度（变化值） ==> 彩色图片</li>
+            </ul>
+        </li>
+        <li>挖掘新因子
+            <ul>
+                <li>类似deep dream和style transfer的特征强化或转移</li>
+                <li>无监督学习分类</li>
+            </ul>
+        </li>
+    </ul>
+</p>
+
+
+<br>
+<h5>其他</h5>
+<p>
+    <ul>
+        <li>图像分割与侦测：因子挖掘？模型优化？</li>
+        <li>过程可视化 ==> 模型调优</li>
+        <li>结果评测工具 ==> 识别模型功能的作用和有效性 </li>
+    </ul>
+</p>
+
+
+<br><br><br>
+<h3>References</h3>
+<ul>
+    <li>http://cs231n.github.io</li>
+    <li>https://www.jiqizhixin.com/articles/2018-06-01-11</li>
+</ul>
