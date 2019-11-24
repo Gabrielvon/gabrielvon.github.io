@@ -1,0 +1,295 @@
+---
+layout: post
+title:  "如何正确地畅游世界"
+subtitle: "How to Surf the World Correctly"
+author: "Gabriel"
+date:   2019-11-28
+header-img: "img/head1.jpg"
+tags:
+    - Proxy
+    - VPS
+    - Shadowsocks
+---
+
+
+<br><br>
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    在国外呆了一段时间，中了google的毒，上了Youtube的瘾。回国后，发现国内的搜索引擎和资源的束缚和缺乏。时常担心有一天
+    无法尽情畅游世界，所以为了能稳定地科学上网，从零基础入门，边做边学，中间遇到很多障碍，走了很多弯路，终于搭成了自己
+    的梯子，差点就把网络基础知识从头到尾学一遍了。
+
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    这个过程，发现了很多网络信息安全的重要性，看了一个youtube的关于网络信息安全的公开课
+    <a href="https://www.youtube.com/watch?v=dtPfSr_hqi8">Hands-on cybersecurity</a>(好像已经看不了了)，对零
+    基础的人非常友好。发现自己在网络世界完全是全裸的状态。希望大家能重视自己的信息安全。
+
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    另外，关于科学上网畅游世界想补充说一些话，畅游世界很爽，可以接收到各个角度和不同立场的信息和观点。海洋中，可以看到
+    各种各样的生物和景观，有新鲜惊奇的，有虚假迷惑的。<b>希望不要轻易改变自己多年形成的观点，但也不要排斥接收对立的观点，
+    一定要保持独立思考，善于求证。</b>在丰富且险恶的世界中，孜孜不倦地追求客观和事实，修正并巩固自己的三观。
+
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    下面，自我总结和整理下，零基础入门，畅游世界的快速方法。注意，以下是一个业余的人，在业余的时间，通过零散的网络文章
+    学习，写的零散且不成体系的总结。请不要深究，有问题请自己去学，或者联系我一起探讨。（虽然我真的什么不懂，这些是大半
+    年前自学的，现在已经忘了，放弃自己从零配置了，直接使用一键配置脚本。
+
+</p>
+
+
+<br><br>
+<h2> 基础知识 </h2>
+<hr>
+<ul>
+    <li>IP的基础知识
+        <ul>
+            <li>IP一般是根据地理位置被分配的，被分配后不能自己调整。</li>
+            <li>现在的IP一般指4位的，也就是IPv4，如128.0.0.1。据说IPv4快不够用了，所以有了IPv6。</li>
+            <li>Port（端口）是自己分配的，从0~65536，有些端口是默认分配给某些功能（可以自己调整）。</li>
+        </ul>
+    </li>
+    <li>VPN和代理的区别
+        <ul>
+            <li>使用VPN <span>(</span>Virtual Privacy Network<span>)</span>的原因是为了对信息加密，这里面
+            包括了信息安全保密等很多内容，不仅仅是因为我们狭义上的“科学上网”。</li>
+            <li>代理<span>(</span>Proxy<span>)</span>是指通过其他IP地址，在网络中前往其他国家或地区进行网络
+            活动。一般不包括信息保密的处理。IP的地址可以通过购买虚拟服务器获取。</li>
+        </ul>
+    </li>
+    <li>服务端和客户端的网络设置
+    </li>
+    <li>两种代理设置的方式
+        <ul>
+            <li>ss/ssr: 较简单</li>
+            <li><a href="https://www.v2ray.com/">v2ray</a>: 较复杂但比较灵活，据说没那么容易被墙</li>
+        </ul>
+    </li>
+    <li>Linux基础操作
+        <ul>
+            <li>系统，ubuntu和centos比较适合小白入门</li>
+            <li>SSH远程连接</li>
+            <li>防火墙设置</li>
+            <li>常用的系统文件的位置</li>
+            <li>sh脚本的使用</li>
+        </ul>
+    </li>
+    <li>一键搭建脚本
+        <ul>
+            <li>233boy（个人目前主要用这个）:
+                <code>bash <(curl -s -L https://git.io/v2ray.sh)</code>
+            </li>
+            <li>v2ray.fun</li>
+            <li>ss-fly</li>
+            <li>V2Ray 基于 Nginx 的 vmess+ws+tls 一键安装脚本</li>
+            <li>V2RAY 基于 NGINX 的 VMESS+WS+TLS+Website(Use Host)</li>
+        </ul>
+    </li>
+    <li>进阶
+        <ul>
+            <li>websocket + tls
+                <ul>
+                    <li>
+                        <a href="https://www.freenom.com/">freenom</a>注册免费域名（有效期最长一年）</li>
+                    <li>certbot申请免费证书</li>
+                </ul>
+            </li>
+            <li><a href="https://www.cloudflare.com/"></a>cloudflare: ip加密，但是会更慢，因为服务器在美国。</li>
+            <li>一键检测脚本
+                <ul>
+                    <li>参考：<a href="https://ssr.tools/759">https://ssr.tools/759</a></li>
+                    <li>秋水:
+                        <code>wget -qO- bench.sh | bash</code></li>
+                    <li>Oldking
+                        <code>
+                            <br>wget -qO- git.io/superbench.sh | bash
+                            <br>wget -qO- https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash
+                        </code>
+                    </li>
+                    <li>ZBench
+                        <code>
+                            <br># 中文版
+                            <br>wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh && bash ZBench-CN.sh
+                            <br># 英文版
+                            <br>wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh && bash ZBench.sh
+                        </code>
+                    </li>
+                </ul>
+            </li>
+            <li>命令行代理</li>
+                <code>
+                apt-get install proxychains
+                <br>brew install proxychains
+                </code>
+            <li>安全性问题处理</li>
+                <blockquote>
+                    老實說我都不管了，正常你用機場 上的站都是有套TLS的吧
+                    <br>證書沒啥問題就得了，有了你不是網絡安全那塊的人也不知道怎樣搞
+                    <br>----
+                    <br>中转还不如买好点的vps
+                    <br>----
+                    <br>买个5-10刀年付的小鸡，用起来不心痛
+                    <br>我觉得有钱买中转，不如买个不同线路的小鸡做负载均衡
+                </blockquote>
+            <li>一些之前找到打算入坑但及时回头是岸的课程
+                <ul>
+                    <li>
+                        <a href="https://www.youtube.com/watch?v=6MYF6Zo6i6A">Complete IT Security Course By Google || Cyber Security Full Course for Beginner</a>
+                    </li>
+                    <li>
+                        <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-858-computer-systems-security-fall-2014/video-lectures/lecture-1-introduction-threat-models/">Computer Systems Security(MIT Fall 2014)</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<br><br>
+<h2> 申请美区账号流程 </h2>
+<hr>
+    网上很多教程，比如少数派的这个 <a href="https://sspai.com/post/25837">App Store注册美区Apple ID指南</a>，注意在图8的地方，如果在中国地区可能不会出现`None`的选项，这时候请连上代理再重试。
+
+
+<br><br>
+<h2> 相关工具 </h2>
+<hr>
+<h4>VPS虚拟机</h4>
+<p>
+    远程虚拟机可以做很多东西，但我只是为了科学上网。从零基础开始学习制作工具科学上网，弄了好久。懒得弄的可以直接用机场，比如<a href="https://justmysocks.net/members/aff.php?aff=7280">Justmysocks</a>。
+</p>
+
+<ul>
+    <li>AWS, Azure, 阿里云, 腾讯云，这些我就不说了，因为太贵了用不起。等以后有更大需求再考虑吧。</li>
+    <li>我常用的<a href="https://www.vultr.com/?ref=7836973">Vultr</a>，用了快一年了。</li>
+    <li>据说在
+        <a href="https://bandwagonhost.com/aff.php?aff=54585">搬瓦工(Bangwagong)</a>和
+        <a href="https://clientarea.gigsgigscloud.com/?affid=2589">GigsGigsCloud</a>(这个是可以申请打折券的，请联系我)在大厂和Vultr之外也还可以。
+    </li>
+    <li>其他的还有很多，我也不清楚，参考下<a href="https://www.vpscang.com/">VPSSCAN</a></li>
+</ul>
+
+
+<h4>客户端(Client)</h4>
+<p>
+    善用全球最大的同性交友网站
+    <a href="www.github.com">GITHUB</a>。下面提到很多桌面端的软件都在github部分开源的，某些由于安全问题就撤掉了，不过还是有很多热心网友fork了。
+</p>
+
+<ul>
+    <li> IOS（以下没特别说明的只能在海外App Store下载）
+        <ul>
+            <li><a href="https://t.me/ShadowrocketApp">Shadowrocket</a>，这是<a href="http://laob.me/2300/">网友的使用教程</a></li>
+            <li>Quantumult</li>
+            <li>Kitubensit</li>
+            <li>Potatso Lite（不支持VMESS），这个有只能通过美区下载。在国内的朋友也可以通过testflight，点击这个<a href="https://testflight.apple.com/join/NkF46PRd?from=singlemessage&isappinstalled=0">邀请链接</a>(内测已经满员了)，下载内测版本。</li>
+        </ul>
+    </li>
+    <li> MACOS
+        <ul>
+            <li><a href="https://shadowsocks.org/en/download/clients.html">Shadowsocsk</a></li>
+            <li><a href="https://github.com/yichengchen/clashX/releases">Clash X</a></li>
+        </ul>
+    </li>
+    <li> Window
+        <ul>
+            <li><a href="https://shadowsocks.org/en/download/clients.html">Shadowsocsk</a></li>
+            <li><a href="https://github.com/Fndroid/clash_for_windows_pkg/releases">Clash X</a></li>
+        </ul>
+    </li>
+    <li>Android，Andriod上应该有很多了，可以自己去搜搜shadowsock或v2ray。</li>
+</ul>
+
+
+
+<h4>节点分享</h4>
+<ul>
+    <li>
+        <a href="https://rixcloud.com/pricing">RIXCLOUD</a>:收费节点，没用过，收费的，而且挺贵。
+    </li>
+    <li>
+        <a href="https://justmysocks.net/members/aff.php?aff=7280">Justmysocks</a>:收费节点，搬瓦工旗下的，较便宜。
+    </li>
+    <li>
+        <a href="https://t.me/DuyaoSS">毒药机场测速 SS/SSR</a>:收费机场信息推送和评测，这个不太清靠不靠谱，靠谱是指稳定性，可靠性，隐私等是否有保证。
+    </li>
+    <li>
+        <a href="https://t.me/gyjclub">SSR Share</a>:免费SSR，亲测有些有用，不过同样不知道是否靠谱。
+    </li>
+</ul>
+
+
+<h4>规则（Rules）</h4>
+<ul>
+     <li>
+         <a href="https://github.com/ConnersHua/Profiles/tree/master">神机规则</a>
+     </li>
+     <li>
+         <a href="https://github.com/h2y/Shadowrocket-ADBlock-Rules">小火箭规则</a>
+     </li>
+ </ul>
+
+
+<h4>网络检测类</h4>
+<ul>
+    <li>
+        <a href="http://ping.pe/">http://ping.pe/</a>
+    </li>
+    <li>
+        <a href="http://ping.chinaz.com/43.32.34.53">国内端口检测</a>
+    </li>
+    <li>
+        <a href="https://www.yougetsignal.com/tools/open-ports/">国外端口检测</a>
+    </li>
+    <li>
+        <a href="https://www.ipip.net/">https://www.ipip.net/</a>
+    </li>
+    <li>
+        <a href="https://ifconfig.me/">https://ifconfig.me/</a>
+    </li>
+    <li>
+        <a href="https://www.silisoftware.com/tools/ipconverter.php?convert_from=180.168.106.62:59022">IP Coverter</a>
+    </li>
+ </ul>
+
+
+<h4>其他学习网站和资源其他学习网站和资源</h4>
+<ul>
+    <li><a href="https://doubibackup.com/">逗比</a></li>
+    <li><a href="https://www.ssr.tools/">SSR中文网</a></li>
+</ul>
+
+<br>
+<p>
+    <b>最后再说提醒一句，外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+    <blockquote>
+        <b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br><b>外面的世界很精彩也很险恶，大家保重身体，注意安全。</b>
+        <br>...
+        <br>...
+        <br>...
+    </blockquote>
+</p>
+
+<br>
+Gabriel
+
+<br><br><br><br><br>
+<h2>推广链接</h2>
+<hr>
+<ul>
+    <li><a href="https://justmysocks.net/members/aff.php?aff=7280">Justmysocks</a></li>
+    <li><a href="https://bandwagonhost.com/aff.php?aff=54585">搬瓦工</a></li>
+    <li><a href="https://clientarea.gigsgigscloud.com/?affid=2589">Gigsgigscloud</a>，这个是可以申请打折券的，请联系我。</li>
+</ul>
+
+
+
+
